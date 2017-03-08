@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText etSignText;
     private Button btnSign;
+    private TextView tvSignWait;
     private TextView tvSignResult;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         etSignText = (EditText) findViewById(R.id.et_sign_text);
         btnSign = (Button) findViewById(R.id.btn_sign);
+        tvSignWait = (TextView) findViewById(R.id.tv_sign_wait);
         tvSignResult = (TextView) findViewById(R.id.tv_sign_result);
 
         Log.d("签名", "   ");
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
                 }else {
                     String signText = SignTool.sign(MainActivity.this, unSignText);
                     tvSignResult.setText(signText);
+                    tvSignWait.setText(unSignText + "xxx" + "1154605269");
                 }
             }});
     }
