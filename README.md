@@ -1,9 +1,9 @@
 [源码传送门](https://github.com/atove/AstraMD5)
 # AstraHttp
 在原生层进行二次打包校验及MD5加密，有效防止反编译、二次打包。    
-![效果图](http://upload-images.jianshu.io/upload_images/5088149-462e307d4230e542.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/240 )
+![效果图](http://upload-images.jianshu.io/upload_images/5088149-462e307d4230e542.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/400 )
 
->**二次打包校验原理：**
+>**二次打包校验原理：**   
 在原生层获取应用包名及签名文件hash值，并与正确的值进行比对。
 
 ##如何使用
