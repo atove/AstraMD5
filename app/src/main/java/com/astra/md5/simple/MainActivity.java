@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                 }else {
                     String signText = SignTool.sign(MainActivity.this, unSignText);
                     tvSignResult.setText(signText);
-                    tvSignWait.setText(unSignText + "xxx" + "1154605269");
+                    tvSignWait.setText(unSignText + "Your key" + "1154605269");
                 }
             }});
     }

@@ -10,6 +10,10 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86_64", "x86"
+            //abiFilters 'armeabi', 'x86'
+        }
     }
 
     //签名配置
@@ -27,7 +31,7 @@ android {
             //zipAlign优化
             zipAlignEnabled true
             //移除无用的Resources文件
-            shrinkResources true
+            shrinkResources false
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -35,10 +39,15 @@ android {
             //zipAlign优化
             zipAlignEnabled true
             //移除无用的Resources文件
-            shrinkResources true
+            shrinkResources false
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.debugConfig
+        }
+    }
+    repositories {
+        flatDir {
+            dirs 'libs'
         }
     }
 }
@@ -52,4 +61,5 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.1'
     testCompile 'junit:junit:4.12'
     compile project(':md5jni')
+    //compile(name: 'md5jni-release', ext: 'aar')
 }

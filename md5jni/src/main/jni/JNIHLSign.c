@@ -12,8 +12,6 @@
 #define ECB 1
 
 const char *UNSIGNATURE = "UNSIGNATURE";
-//你的sign KEY
-static const char MD5_KEY[] = "xxx";
 
 JNIEXPORT jstring JNICALL
 Java_com_astra_md5jni_SignTool_nSign(JNIEnv *env, jobject instance, jobject context, jstring str_) {
@@ -21,20 +19,20 @@ Java_com_astra_md5jni_SignTool_nSign(JNIEnv *env, jobject instance, jobject cont
     //先进行apk被 二次打包的校验
     int hashCode = checkSignature(env, instance, context);
     //要把日志注掉
-    LOGE("hashcode2: %d\n", hashCode);
+    //LOGE("hashcode2: %d\n", hashCode);
     if (hashCode != -1 && hashCode != -2) {
 
         char* szText = (char*)(*env)->GetStringUTFChars(env, str_, JNI_FALSE);
 
         char buffer[2];
         //拼接的待加密字符串，可以根据自身需求修改
-        sprintf(buffer, "%s%s%d", szText, MD5_KEY, hashCode);
+        sprintf(szText, "%s%s%d", szText, MD5_KEY, hashCode);
         //要把日志注掉
-        LOGD("待加密字符串: %s\n", buffer);
+        //LOGD("待加密字符串: %s\n", szText);
 
         MD5_CTX context = { 0 };
         MD5Init(&context);
-        MD5Update(&context, buffer, strlen(buffer));
+        MD5Update(&context, szText, strlen(szText));
         uint8_t dest[16] = { 0 };
         MD5Final(dest, &context);
         (*env)->ReleaseStringUTFChars(env, str_, szText);
@@ -46,14 +44,7 @@ Java_com_astra_md5jni_SignTool_nSign(JNIEnv *env, jobject instance, jobject cont
             sprintf(szMd5, "%s%02x", szMd5, dest[i]);
         }
 
-        if (sizeof(int) == 4){
-
-        } else{
-
-        }
-
-
-        sizeof(int) == 4, sizeof(long) == sizeof(long long) == 2 * sizeof(int);
+        //sizeof(int) == 4, sizeof(long) == sizeof(long long) == 2 * sizeof(int);
 
         return (*env)->NewStringUTF(env, szMd5);
 
@@ -64,8 +55,6 @@ Java_com_astra_md5jni_SignTool_nSign(JNIEnv *env, jobject instance, jobject cont
         return (*env)->NewStringUTF(env, str);
     }
 }
-
-
 
 jstring charToJstring(JNIEnv *envPtr, char *src) {
     JNIEnv env = *envPtr;

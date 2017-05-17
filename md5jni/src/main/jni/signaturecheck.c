@@ -34,7 +34,7 @@ jint checkSignature(JNIEnv *env, jobject thiz, jobject context) {
                                                            methodID_pack);
     const char *package_name = (*env)->GetStringUTFChars(env,
                                                          application_package, 0);
-    LOGE("packageName: %s\n", package_name);
+    //LOGE("packageName: %s\n", package_name);
 
     // 获得PackageInfo
     jobject packageInfo = (*env)->CallObjectMethod(env, packageManager,

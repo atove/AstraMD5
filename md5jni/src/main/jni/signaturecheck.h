@@ -10,10 +10,11 @@
 #ifndef AESJNIENCRYPT_SIGNACTURECHECK_H
 #define AESJNIENCRYPT_SIGNACTURECHECK_H
 
-
+//你的sign KEY
+static const char MD5_KEY[] = "Your key";
 //合法的APP包名
 static const char *app_packageName = "com.astra.md5.simple";
-//合法的hashcode -625644214:这个值是我生成的这个可以store文件的hash值
+//合法的hashcode 1154605269:这个值是我生成的这个可以store文件的hash值
 static const int app_signature_hash_code = 1154605269;
 
 /**
