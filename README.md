@@ -8,16 +8,22 @@
 
 ##如何使用
 因为每个项目都不同，需要根据自己需要改源码，所以就不提供 gradle 引入方式了。   
-将[源码](https://github.com/atove/AstraMD5) download 下来，然后把其中的 md5jni 引入到自己的项目中，找到 signaturecheck.h 文件把 *app_packageName 修改成自己的包名，把 app_signature_hash_code 修改成自己的 hashcode 。
+将[源码](https://github.com/atove/AstraMD5) download 下来，然后把其中的 md5jni 引入到自己的项目中，
+或者直接打开该项目。   
+>**注意**   
+在打开过程中会提示升级 gradle，不要升级，不然64位系统加载生成的32位so文件会出错，是个大坑，原因还不知道。   
+如果是引入自己的项目，也要把 gradle 改成 2.2.2。等生成了 aar 文件并引入后，可以随意修改，具体生成 aar 文件下文会介绍。
+
+找到 signaturecheck.h 文件把 *app_packageName 修改成自己的包名，把 app_signature_hash_code 修改成自己的 hashcode 。
 ```
 //合法的APP包名
 static const char *app_packageName = "com.astra.md5.simple";
 //合法的hashcode 1154605269:这个值是我生成的这个可以store文件的hash值
 static const int app_signature_hash_code = 1154605269;
 ```
-在 JNIHLSign.c 文件中修改：
+在 signaturecheck.h 文件中修改：
 ```
-static const char MD5_KEY[] = "xxx";
+static const char MD5_KEY[] = "Your key";
 ```
 及
 ```
