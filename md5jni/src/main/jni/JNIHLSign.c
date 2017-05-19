@@ -35,7 +35,7 @@ Java_com_astra_md5jni_SignTool_nSign(JNIEnv *env, jobject instance, jobject cont
         MD5_CTX context = { 0 };
         MD5Init(&context);
         MD5Update(&context, ptr, strlen(ptr));
-        uint8_t dest[16] = { 0 };
+        unsigned char dest[16] = { 0 };
         MD5Final(dest, &context);
         (*env)->ReleaseStringUTFChars(env, str_, ptr);
 
