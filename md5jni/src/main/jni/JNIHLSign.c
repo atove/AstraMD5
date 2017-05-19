@@ -25,17 +25,19 @@ Java_com_astra_md5jni_SignTool_nSign(JNIEnv *env, jobject instance, jobject cont
         char* szText = (char*)(*env)->GetStringUTFChars(env, str_, JNI_FALSE);
 
         char buffer[2];
+
+        char *ptr = malloc(strlen(szText) + 19);
         //拼接的待加密字符串，可以根据自身需求修改
-        sprintf(szText, "%s%s%d", szText, MD5_KEY, hashCode);
+        sprintf(ptr, "%s%s%d", szText, MD5_KEY, hashCode);
         //要把日志注掉
-        //LOGD("待加密字符串: %s\n", szText);
+        LOGD("待加密字符串: %s\n", ptr);
 
         MD5_CTX context = { 0 };
         MD5Init(&context);
-        MD5Update(&context, szText, strlen(szText));
+        MD5Update(&context, ptr, strlen(ptr));
         uint8_t dest[16] = { 0 };
         MD5Final(dest, &context);
-        (*env)->ReleaseStringUTFChars(env, str_, szText);
+        (*env)->ReleaseStringUTFChars(env, str_, ptr);
 
         int i = 0;
         char szMd5[32] = { 0 };
